@@ -5,7 +5,7 @@ This cookbook will install the McAfee-client on Windows-systems
 
 Requirements
 ------------
-The cookbook depends on the windows-cookbook, the client should be managed from an EPO server
+The cookbook depends on the windows cookbook, the client should be managed from an EPO server
 
 
 Attributes
