@@ -23,6 +23,7 @@ end
 
 windows_package node['mcafee']['agent']['package_name'] do
   source node['mcafee']['agent']['url']
+  checksum node ['mcafee']['agent']['checksum']
   options '/Install=Agent /Silent'
   installer_type :custom
   action :install
@@ -30,6 +31,7 @@ end
 
 windows_zipfile File.join(Chef::Config[:file_cache_path], 'McAfee') do
   source node['mcafee']['virusscan']['url']
+  checksum node['mcafee']['virusscan']['checksum']
   action :unzip
   not_if { Chef::Provider::WindowsPackage.new(nil, run_context).send(:installed_packages).include?(node['mcafee']['virusscan']['package_name']) }
   notifies :install, "windows_package[#{node['mcafee']['virusscan']['package_name']}]", :immediately
