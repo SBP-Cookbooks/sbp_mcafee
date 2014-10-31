@@ -10,7 +10,7 @@
 if node['mcafee']['virusscan']['url'] == ''
 then
 
-  log "#{node['mcafee']['virusscan']['package_name']} not available"
+  Chef::Log.warn "Package \"#{node['mcafee']['virusscan']['package_name']}\" not available"
 
 else
 

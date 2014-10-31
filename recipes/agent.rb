@@ -10,7 +10,7 @@
 if node['mcafee']['agent']['url'] == ''
 then
 
-  log "#{node['mcafee']['agent']['package_name']} not available"
+  Chef::Log.warn "Package \"#{node['mcafee']['agent']['package_name']}\" not available"
 
 else
 
