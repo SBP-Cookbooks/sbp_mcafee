@@ -17,34 +17,5 @@
 # limitations under the License.
 #
 
-if node['mcafee']['agent']['url'] == '' || node['mcafee']['virusscan']['url'] == ''
-  raise "The node['mcafee']['agent']['url'] and node['mcafee']['virusscan']['url'] attributes must specify valid download URLs!"
-end
-
-windows_package node['mcafee']['agent']['package_name'] do
-  source node['mcafee']['agent']['url']
-  checksum node['mcafee']['agent']['checksum']
-  options '/Install=Agent /Silent'
-  installer_type :custom
-  action :install
-end
-
-windows_zipfile File.join(Chef::Config[:file_cache_path], 'McAfee') do
-  source node['mcafee']['virusscan']['url']
-  checksum node['mcafee']['virusscan']['checksum']
-  action :unzip
-  not_if { Chef::Provider::WindowsPackage.new(nil, run_context).send(:installed_packages).include?(node['mcafee']['virusscan']['package_name']) }
-  notifies :install, "windows_package[#{node['mcafee']['virusscan']['package_name']}]", :immediately
-end
-
-windows_package node['mcafee']['virusscan']['package_name']  do
-  source File.join(Chef::Config[:file_cache_path], 'McAfee\SetupVSE.exe')
-  options 'ADDLOCAL=ALL RUNAUTOUPDATESILENTLY=True REMOVE=LotusNotesScan REBOOT=R /qn'
-  installer_type :custom
-  action :nothing
-end
-
-directory File.join(Chef::Config[:file_cache_path], 'McAfee') do
-	recursive true
-	action :delete
-end
+include_recipe "sbp_mcafee::agent"
+include_recipe "sbp_mcafee::virusscan"
