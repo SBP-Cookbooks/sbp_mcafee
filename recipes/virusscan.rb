@@ -8,30 +8,26 @@
 #
 
 if node['mcafee']['virusscan']['url'] == ''
-then
+  Chef::Log.warn "Attribute node['mcafee']['virusscan']['url'] is empty, so package \"#{node['mcafee']['virusscan']['package_name']}\" will not be installed"
+  return
+end
 
-  Chef::Log.warn "Package \"#{node['mcafee']['virusscan']['package_name']}\" not available"
+windows_zipfile File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name']) do
+  source node['mcafee']['virusscan']['url']
+  checksum node['mcafee']['virusscan']['checksum']
+  action :unzip
+  not_if { Chef::Provider::WindowsPackage.new(nil, run_context).send(:installed_packages).include?(node['mcafee']['virusscan']['package_name']) }
+  notifies :install, "windows_package[#{node['mcafee']['virusscan']['package_name']}]", :immediately
+end
 
-else
+windows_package node['mcafee']['virusscan']['package_name'] do
+  source "File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name'], 'SetupVSE.exe')"
+  options "ADDLOCAL=ALL RUNAUTOUPDATESILENTLY=True REMOVE=LotusNotesScan REBOOT=R /qn"
+  installer_type :custom
+  action :install
+end
 
-  windows_zipfile File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name']) do
-    source node['mcafee']['virusscan']['url']
-    checksum node['mcafee']['virusscan']['checksum']
-    action :unzip
-    not_if { Chef::Provider::WindowsPackage.new(nil, run_context).send(:installed_packages).include?(node['mcafee']['virusscan']['package_name']) }
-    notifies :install, "windows_package[#{node['mcafee']['virusscan']['package_name']}]", :immediately
-  end
-
-  windows_package node['mcafee']['virusscan']['package_name'] do
-    source "File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name'], 'SetupVSE.exe')"
-    options "ADDLOCAL=ALL RUNAUTOUPDATESILENTLY=True REMOVE=LotusNotesScan REBOOT=R /qn"
-    installer_type :custom
-    action :install
-  end
-
-  directory File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name']) do
-    recursive true
-    action :delete
-  end
-
+directory File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name']) do
+  recursive true
+  action :delete
 end

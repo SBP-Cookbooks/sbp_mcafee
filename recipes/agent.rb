@@ -8,10 +8,7 @@
 #
 
 if node['mcafee']['agent']['url'] == ''
-then
-
-  Chef::Log.warn "Package \"#{node['mcafee']['agent']['package_name']}\" not available"
-
+  Chef::Log.warn "Attribute node['mcafee']['agent']['url'] is empty, so package \"#{node['mcafee']['agent']['package_name']}\" will not be installed"
 else
 
   windows_package node['mcafee']['agent']['package_name'] do
