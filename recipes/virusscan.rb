@@ -16,7 +16,7 @@ windows_zipfile File.join(Chef::Config[:file_cache_path], node['mcafee']['viruss
   source node['mcafee']['virusscan']['url']
   checksum node['mcafee']['virusscan']['checksum']
   action :unzip
-  not_if { Chef::Provider::WindowsPackage.new(nil, run_context).send(:installed_packages).include?(node['mcafee']['virusscan']['package_name']) }
+  not_if { Chef::Provider::WindowsCookbookPackage.new(nil, run_context).send(:installed_packages).include?(node['mcafee']['virusscan']['package_name']) }
   notifies :install, "windows_package[#{node['mcafee']['virusscan']['package_name']}]", :immediately
 end
 
