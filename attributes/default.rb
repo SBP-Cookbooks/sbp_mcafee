@@ -20,6 +20,7 @@
 default['mcafee']['agent']['package_name']      = 'McAfee Agent'
 default['mcafee']['agent']['url']               = ''
 default['mcafee']['agent']['checksum']          = ''
+default['mcafee']['agent']['options']           = '/Install=Updater /Silent'
 default['mcafee']['virusscan']['package_name']  = 'McAfee VirusScan Enterprise'
 default['mcafee']['virusscan']['url']           = ''
 default['mcafee']['virusscan']['checksum']      = ''
