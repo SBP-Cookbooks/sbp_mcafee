@@ -15,7 +15,7 @@ end
 windows_package node['mcafee']['agent']['package_name'] do
   source node['mcafee']['agent']['url']
   checksum node['mcafee']['agent']['checksum']
-  options "/Install=Updater /Silent"
+  options node['mcafee']['agent']['options']
   installer_type :custom
   action :install
 end
