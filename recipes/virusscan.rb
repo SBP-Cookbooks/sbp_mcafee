@@ -23,7 +23,7 @@ end
 package = win_friendly_path(File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name'], 'SetupVSE.exe'))
 windows_package node['mcafee']['virusscan']['package_name'] do
   source package
-  options "ADDLOCAL=ALL RUNAUTOUPDATESILENTLY=True REMOVE=LotusNotesScan REBOOT=R /qn"
+  options "ADDLOCAL=ALL RUNAUTOUPDATESILENTLY=True REMOVE=ScriptScan,LotusNotesScan,EmailScan REBOOT=R /qn"
   installer_type :custom
   action :install
 end
