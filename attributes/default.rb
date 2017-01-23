@@ -25,4 +25,4 @@ default['mcafee']['virusscan']['package_name']      = 'McAfee VirusScan Enterpri
 default['mcafee']['virusscan']['url']               = ''
 default['mcafee']['virusscan']['checksum']          = ''
 default['mcafee']['virusscan']['options']           = 'ADDLOCAL=ALL RUNAUTOUPDATESILENTLY=True REMOVE=ScriptScan,LotusNotesScan,EmailScan REBOOT=R /qn'
-default['mcafee']['virusscan']['installer_timeout'] = '900'
+default['mcafee']['virusscan']['installer_timeout'] = 900
