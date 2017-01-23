@@ -24,7 +24,7 @@ package = win_friendly_path(File.join(Chef::Config[:file_cache_path], node['mcaf
 windows_package node['mcafee']['virusscan']['package_name'] do
   source package
   options node['mcafee']['virusscan']['options']
-  timeout node['mcafee']['virusscan']['installer_timeout']
+  timeout node['mcafee']['virusscan']['installer_timeout'].to_i
   installer_type :custom
   action :install
 end
