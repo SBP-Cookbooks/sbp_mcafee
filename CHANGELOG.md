@@ -1,5 +1,12 @@
 sbp_mcafee_client CHANGELOG
 ===========================
+
+0.2.9
+-----
+
+- Added basic ChefSpec "it converges" tests
+- Updated some supporting files
+
 0.2.5  
 -----
 - Sander Botman / Joris van Lieshout - moving options into attribute  
