@@ -18,11 +18,12 @@
 #
 
 default['mcafee']['agent']['package_name']          = 'McAfee Agent'
-default['mcafee']['agent']['url']                   = ''
-default['mcafee']['agent']['checksum']              = ''
+default['mcafee']['agent']['url']                   = nil
+default['mcafee']['agent']['checksum']              = nil
 default['mcafee']['agent']['options']               = '/Install=Updater /Silent'
+
 default['mcafee']['virusscan']['package_name']      = 'McAfee VirusScan Enterprise'
-default['mcafee']['virusscan']['url']               = ''
-default['mcafee']['virusscan']['checksum']          = ''
+default['mcafee']['virusscan']['url']               = nil
+default['mcafee']['virusscan']['checksum']          = nil
 default['mcafee']['virusscan']['options']           = 'ADDLOCAL=ALL RUNAUTOUPDATESILENTLY=True REMOVE=ScriptScan,LotusNotesScan,EmailScan REBOOT=R /qn'
 default['mcafee']['virusscan']['installer_timeout'] = 900

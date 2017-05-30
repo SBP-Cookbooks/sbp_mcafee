@@ -17,5 +17,5 @@
 # limitations under the License.
 #
 
-include_recipe "sbp_mcafee::agent"
-include_recipe "sbp_mcafee::virusscan"
+include_recipe 'sbp_mcafee::agent'
+include_recipe 'sbp_mcafee::virusscan'

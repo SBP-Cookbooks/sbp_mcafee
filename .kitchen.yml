@@ -1,0 +1,29 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: <%= ENV['OMNIBUS_CHEF_CLIENT_VERSION'] || 'latest' %>
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: windows2008r2
+  - name: windows2012r2
+  - name: windows2016
+
+suites:
+  - name: default
+    run_list:
+      - recipe[sbp_mcafee::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
+      mcafee:
+        agent:
+          url: <%= ENV['MCAFEE_AGENT_URL'] %>
+        virusscan:
+          url: <%= ENV['MCAFEE_VIRUSSCAN_URL'] %>
