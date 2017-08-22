@@ -14,11 +14,12 @@ end
 
 ::Chef::Recipe.send(:include, Windows::Helper)
 
+is_mcafee_vs_installed = is_package_installed?(node['mcafee']['virusscan']['package_name'])
 windows_zipfile File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name']) do
   source node['mcafee']['virusscan']['url']
   checksum node['mcafee']['virusscan']['checksum'] if node['mcafee']['virusscan']['checksum']
   action :unzip
-  not_if { is_package_installed?(node['mcafee']['virusscan']['package_name']) }
+  not_if { is_mcafee_vs_installed }
   notifies :install, "windows_package[#{node['mcafee']['virusscan']['package_name']}]", :immediately
 end
 
