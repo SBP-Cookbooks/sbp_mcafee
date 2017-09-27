@@ -44,7 +44,6 @@ begin
       a << '-I test/spec'
     end.join(' ')
   end
-
 rescue LoadError => e
   puts ">>> Gem load error: #{e}, omitting spec" unless ENV['CI']
 end
