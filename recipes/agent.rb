@@ -17,5 +17,6 @@ windows_package node['mcafee']['agent']['package_name'] do
   checksum node['mcafee']['agent']['checksum'] if node['mcafee']['agent']['checksum']
   options node['mcafee']['agent']['options']
   installer_type :custom
+  timeout 1200
   action :install
 end
