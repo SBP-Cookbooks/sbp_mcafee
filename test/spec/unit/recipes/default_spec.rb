@@ -19,6 +19,14 @@ describe 'sbp_mcafee::default' do
     it 'should converge successfully' do
       expect { chef_run }.to_not raise_error
     end
+
+    it 'should not install agent' do
+      expect(chef_run).to_not install_windows_package('McAfee Agent')
+    end
+
+    it 'should not install virus scan' do
+      expect(chef_run).to_not install_windows_package('McAfee VirusScan Enterprise')
+    end
   end
 
   context 'when attributes are set, on a windows 2012 r2 system' do
@@ -30,11 +38,19 @@ describe 'sbp_mcafee::default' do
     end
 
     before do
-      allow_any_instance_of(Chef::Resource::WindowsZipfile).to receive(:is_package_installed?).and_return(false)
+      allow_any_instance_of(Chef::Recipe).to receive(:is_package_installed?).and_return(false)
     end
 
     it 'should converge successfully' do
       expect { chef_run }.to_not raise_error
+    end
+
+    it 'should install agent' do
+      expect(chef_run).to install_windows_package('McAfee Agent')
+    end
+
+    it 'should install virus scan' do
+      expect(chef_run).to install_windows_package('McAfee VirusScan Enterprise')
     end
   end
 end
