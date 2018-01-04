@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: win_mcafee
+# Cookbook Name:: sbp_mcafee
 # Recipe:: default
 #
 # Copyright 2013, Schuberg Philis B.V.
