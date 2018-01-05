@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: win_mcafee
+# Cookbook Name:: sbp_mcafee
 # Recipe:: default
 #
 # Copyright 2013, Schuberg Philis B.V.
@@ -23,7 +23,7 @@ windows_zipfile File.join(Chef::Config[:file_cache_path], node['mcafee']['viruss
   notifies :install, "windows_package[#{node['mcafee']['virusscan']['package_name']}]", :immediately
 end
 
-package = win_friendly_path(File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name'], 'SetupVSE.exe'))
+package = win_friendly_path(File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name'], node['mcafee']['virusscan']['installer_exe']))
 windows_package node['mcafee']['virusscan']['package_name'] do
   source package
   options node['mcafee']['virusscan']['options']
