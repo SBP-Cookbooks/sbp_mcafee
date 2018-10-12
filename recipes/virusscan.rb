@@ -29,7 +29,7 @@ windows_package node['mcafee']['virusscan']['package_name'] do
   options node['mcafee']['virusscan']['options']
   timeout node['mcafee']['virusscan']['installer_timeout'].to_i
   installer_type :custom
-  action :install
+  action :nothing
 end
 
 directory File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name']) do
