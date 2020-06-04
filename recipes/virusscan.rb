@@ -12,9 +12,10 @@ if node['mcafee']['virusscan']['url'].nil?
   return
 end
 
-::Chef::Recipe.send(:include, Windows::Helper)
+require 'chef/util/path_helper'
 
 is_mcafee_vs_installed = is_package_installed?(node['mcafee']['virusscan']['package_name'])
+
 windows_zipfile File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name']) do
   source node['mcafee']['virusscan']['url']
   checksum node['mcafee']['virusscan']['checksum'] if node['mcafee']['virusscan']['checksum']
@@ -23,7 +24,8 @@ windows_zipfile File.join(Chef::Config[:file_cache_path], node['mcafee']['viruss
   notifies :install, "windows_package[#{node['mcafee']['virusscan']['package_name']}]", :immediately
 end
 
-package = win_friendly_path(File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name'], node['mcafee']['virusscan']['installer_exe']))
+package = Chef::Util::PathHelper.cleanpath(File.join(Chef::Config[:file_cache_path], node['mcafee']['virusscan']['package_name'], node['mcafee']['virusscan']['installer_exe']))
+
 windows_package node['mcafee']['virusscan']['package_name'] do
   source package
   options node['mcafee']['virusscan']['options']
