@@ -1,7 +1,4 @@
-# Inspec test for recipe sbp_messageanalyzer::default
-
-# The Inspec reference, with examples and extensive documentation, can be
-# found at http://inspec.io/docs/reference/resources/
+# Inspec test for recipe sbp_mcafee::default
 
 describe package('McAfee Agent') do
   it { should be_installed }

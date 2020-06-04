@@ -1,10 +1,3 @@
-#
-# Cookbook:: sbp_mcafee
-# Spec:: default
-#
-# Copyright:: 2020, Schuberg Philis
-#
-
 require 'spec_helper'
 
 describe 'sbp_mcafee::default' do
