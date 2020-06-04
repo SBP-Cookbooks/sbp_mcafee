@@ -2,7 +2,7 @@
 # Cookbook:: sbp_mcafee
 # Spec:: default
 #
-# Copyright:: 2014-2017, Schuberg Philis
+# Copyright:: 2020, Schuberg Philis
 #
 
 require 'spec_helper'

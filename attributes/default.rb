@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: sbp_mcafee
+# Cookbook:: sbp_mcafee
 # Attribute:: default
 #
-# Copyright 2014, Schuberg Philis
+# Copyright:: 2020, Schuberg Philis
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

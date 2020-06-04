@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: sbp_mcafee
+# Cookbook:: sbp_mcafee
 # Recipe:: default
 #
-# Copyright 2013, Schuberg Philis B.V.
+# Copyright:: 2020, Schuberg Philis
 #
 # All rights reserved - Do Not Redistribute
 #
