@@ -51,6 +51,7 @@ describe 'sbp_mcafee::default' do
 
     it 'should install virus scan' do
       expect(chef_run).to_not install_windows_package('McAfee VirusScan Enterprise')
+      expect(chef_run.windows_zipfile('/tmp/cache/McAfee VirusScan Enterprise')).to notify('windows_package[McAfee VirusScan Enterprise]').to(:install).immediately
     end
   end
 end
