@@ -14,7 +14,7 @@ services: docker
 
 env:
   global:
-    secure: "Nbw4Kg8lsB/iwPb3Wruhli34OUADFvlwwQcv7AzWuYDg2K1qzRgRqNmC6THdXOdFp9rs8tnaru6lNkhoEsANeGjyl1qN37jyvnjTZdL71BakenNvWyvVGzAuYEQhpHEpDLcV1YrjRiPUAtd1PqVTOysjZWZhOHz7ybW5fe06zuo="
+    secure: Nbw4Kg8lsB/iwPb3Wruhli34OUADFvlwwQcv7AzWuYDg2K1qzRgRqNmC6THdXOdFp9rs8tnaru6lNkhoEsANeGjyl1qN37jyvnjTZdL71BakenNvWyvVGzAuYEQhpHEpDLcV1YrjRiPUAtd1PqVTOysjZWZhOHz7ybW5fe06zuo=
 
 branches:
   only:
