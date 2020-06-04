@@ -1,0 +1,47 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  product_name: chef
+  product_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
+  install_strategy: once
+  always_update_cookbooks: true
+  retry_on_exit_code:
+    - 35
+  max_retries: 1
+  client_rb:
+    exit_status: :enabled
+    client_fork: false # Forked instances don't return the real exit code
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: windows-2012r2
+    driver_config:
+      box: tas50/windows_2012r2
+      gui: false
+  - name: windows-2016
+    driver_config:
+      box: tas50/windows_2016
+      gui: false
+  - name: windows-2019
+    driver_config:
+      box: tas50/windows_2019
+      gui: false
+
+suites:
+  - name: default
+    run_list:
+      - recipe[sbp_mcafee::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
+      mcafee:
+        agent:
+          url: <%= ENV['MCAFEE_AGENT_URL'] %>
+        virusscan:
+          url: <%= ENV['MCAFEE_VIRUSSCAN_URL'] %>
