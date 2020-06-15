@@ -6,14 +6,15 @@ provisioner:
   name: chef_zero
   product_name: chef
   product_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
-  install_strategy: once
   always_update_cookbooks: true
-  retry_on_exit_code:
-    - 35
-  max_retries: 1
   client_rb:
     exit_status: :enabled
     client_fork: false # Forked instances don't return the real exit code
+  enforce_idempotency: true
+  install_strategy: once
+  max_retries: 1
+  multiple_converge: 2
+  retry_on_exit_code: [35]
 
 verifier:
   name: inspec
