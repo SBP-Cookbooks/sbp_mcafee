@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.4.0 (2020-06-15)
+
+Refactored to use native Chef 15 resources; now requires at least Chef 15.
+
 ## 0.3.1 (2018-10-12)
 
 ### Fixed
